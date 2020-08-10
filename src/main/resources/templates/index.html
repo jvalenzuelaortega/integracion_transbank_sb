@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="fragments/header :: header">
+
+</head>
+<body>
+	<div th:insert="fragments/nav :: nav"></div>
+
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-6 offset-md-3">
+
+				<h3 class="text-center">Confirmacion de compra</h3>
+
+				<br>
+				
+				<table class="table">
+					<thead>
+						<tr>
+					      <th scope="col">Valor del producto</th>
+					      <th scope="col">Orden de compra</th>
+					    </tr>
+					</thead>
+					<tbody>
+						<tr>
+					      <td th:text="${amopunt}"></td>
+					      <td th:text="${buyOrder}"></td>
+					    </tr>
+					</tbody>
+				</table>
+
+				<form action="#" class="form-inline justify-content-center" th:action="${formAction}" method="post">
+					<input type="hidden" name="token_ws" th:value="${tokenWs}">
+					<br>
+
+					<button type="submit" class="btn btn-success">Pagar</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>
