@@ -1,5 +1,7 @@
 package cl.app.springboot_transbank.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.transbank.webpay.wswebpay.service.TransactionResultOutput;
@@ -14,6 +16,8 @@ import cl.transbank.webpay.configuration.Configuration;
 @Service
 public class WebpayNormalServiceImpl implements WebpayNormalService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebpayNormalServiceImpl.class);
+
 	@Override
 	public WsInitTransactionOutput initResult(double amount, String session, String buyOrder, String returnUrl,
 			String finalUrl) {
@@ -22,9 +26,12 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		try {
 			WebpayNormal transaction = new Webpay(Configuration.forTestingWebpayPlusNormal()).getNormalTransaction();
 			initResult = transaction.initTransaction(amount, session, buyOrder, returnUrl, finalUrl);
+
+			LOGGER.info("Se ha iniciado la transaccion");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			LOGGER.info("Error al iniciar la transaccion");
 		}
 		return initResult;
 	}
@@ -41,9 +48,11 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 			if(output.getResponseCode() == 0) {
 				return result;
 			}
+			LOGGER.info("Se ha resuelto la transaccion");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			LOGGER.info("No se ha resuelto la transaccion");
 		}
 		return result;
 	}
@@ -54,8 +63,10 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		WsTransactionDetailOutput output = new WsTransactionDetailOutput();
 		try {
 			output = result.getDetailOutput().get(0);
+			LOGGER.info("Se ha extraido el detalle la transaccion");
 		}catch(Exception e) {
 			e.printStackTrace();
+			LOGGER.info("No se ha extraido el detalle la transaccion");
 		}
 		return output;
 	}

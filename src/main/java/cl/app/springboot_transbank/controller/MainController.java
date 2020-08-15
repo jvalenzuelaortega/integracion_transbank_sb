@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cl.app.springboot_transbank.service.impl.WebpayNormalServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,8 @@ import cl.app.springboot_transbank.service.WebpayNormalService;
 
 @Controller
 public class MainController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
 	@Autowired
 	WebpayNormalService webpayNormalService;
@@ -95,8 +100,11 @@ public class MainController {
 			initDataArray.add(url);
 			initDataArray.add(token);
 
+			LOGGER.info("Se han guardado los datos en el arreglo :" +initDataArray.toString());
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.info("No se han guardado los datos en el arreglo");
 		}
 
 		return initDataArray;
@@ -119,12 +127,15 @@ public class MainController {
 				returnDataArray.add(responseCode);
 				returnDataArray.add(amount);
 				returnDataArray.add(authorizationCode);
+
+				LOGGER.info("Se han guardado los datos en el arreglo :" +returnDataArray.toString());
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			LOGGER.info("No se han guardado los datos en el arreglo");
 		}
-		
+
 		return returnDataArray;
 	}
 
