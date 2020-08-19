@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cl.app.springboot_transbank.service.impl.WebpayNormalServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,17 @@ import com.transbank.webpay.wswebpay.service.TransactionResultOutput;
 import com.transbank.webpay.wswebpay.service.WsInitTransactionOutput;
 import com.transbank.webpay.wswebpay.service.WsTransactionDetailOutput;
 
+import cl.app.springboot_transbank.properties.WebpayDataProperties;
 import cl.app.springboot_transbank.service.WebpayNormalService;
 
 @Controller
-public class MainController {
+public class WebpayController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebpayController.class);
 
+	@Autowired
+	WebpayDataProperties webpayDataProperties;
+	
 	@Autowired
 	WebpayNormalService webpayNormalService;
 
@@ -36,14 +39,13 @@ public class MainController {
 		String session = "mySession";
 		String buyOrder = String.valueOf(Math.abs(new Random().nextLong()));
 
-		String urlReturn = "http://localhost:8080/return";
-		String urlFinal = "http://localhost:8080/final";
-
-		List<String> getDataFromWebpay = getDataInitWebpay(100, session, buyOrder, urlReturn, urlFinal);
+		List<String> getDataFromWebpay = getDataInitWebpay(100, session, buyOrder, 
+				webpayDataProperties.getUrlReturn(), webpayDataProperties.getUrlFinal());
 		
 		String urlFormAction = getDataFromWebpay.get(0);
 		String tokeWs = getDataFromWebpay.get(1);
 
+		//Valores que se enviaran a la vista inicial
 		mav.addObject("formAction", urlFormAction);
 		mav.addObject("tokenWs", tokeWs);
 		mav.addObject("amopunt", amount);
@@ -63,7 +65,7 @@ public class MainController {
 		String amount = getDataReturnFromWebpay.get(2);
 		String authorizationCode = getDataReturnFromWebpay.get(3);
 		
-		
+		//Valores que se enviaran a la vista de retorno
 		mav.addObject("urlRedireccion", urlRedirection);
 		mav.addObject("responseCode", responseCode);
 		mav.addObject("amount", amount);
@@ -77,7 +79,6 @@ public class MainController {
 	@PostMapping("/final")
 	public ModelAndView getFinal() {
 		ModelAndView mav = new ModelAndView("final");
-
 		return mav;
 	}
 

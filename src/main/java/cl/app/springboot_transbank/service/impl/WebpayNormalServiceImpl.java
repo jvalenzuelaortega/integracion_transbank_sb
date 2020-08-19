@@ -43,11 +43,6 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		try {
 			WebpayNormal transaction = new Webpay(Configuration.forTestingWebpayPlusNormal()).getNormalTransaction();
 			result = transaction.getTransactionResult(token);
-			WsTransactionDetailOutput output = result.getDetailOutput().get(0);
-			
-			if(output.getResponseCode() == 0) {
-				return result;
-			}
 			LOGGER.info("Se ha resuelto la transaccion");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
