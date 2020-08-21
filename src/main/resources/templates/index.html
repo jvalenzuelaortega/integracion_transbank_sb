@@ -27,8 +27,16 @@
 						<input type="text" class="form-control" id="buyOrderInpt" th:field="*{buyOrder}" readonly/>
 					</div>
 					
+					<br>
+					<div class="form-group">
+						<div class="col text-center">
+							<input type="checkbox" class="form-check-input" id="checkBuy">
+    						<label class="form-check-label" for="check">Confirmar valores</label>
+    					</div>
+					</div>
+					
 					<div class="col text-center">
-						<button type="submit" class="btn btn-primary">Comprar</button>
+						<button type="submit" class="btn btn-primary" id="comprarBtn">Comprar</button>
 					</div>
 				</form>
 
