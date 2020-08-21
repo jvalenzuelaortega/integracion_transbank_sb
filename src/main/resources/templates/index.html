@@ -10,30 +10,26 @@
 
 			<div class="col-md-6 offset-md-3">
 
-				<h3 class="text-center">Confirmacion de compra</h3>
-
+				<h4 class="text-center">Pantalla Principal</h4>
 				<br>
-				
-				<table class="table">
-					<thead>
-						<tr>
-					      <th scope="col">Valor del producto</th>
-					      <th scope="col">Orden de compra</th>
-					    </tr>
-					</thead>
-					<tbody>
-						<tr>
-					      <td th:text="${amopunt}"></td>
-					      <td th:text="${buyOrder}"></td>
-					    </tr>
-					</tbody>
-				</table>
 
-				<form action="#" class="form-inline justify-content-center" th:action="${formAction}" method="post">
-					<input type="hidden" name="token_ws" th:value="${tokenWs}">
-					<br>
-
-					<button type="submit" class="btn btn-success">Pagar</button>
+				<form action="#" th:action="@{/webpay}" th:object="${purchase}" method="post">
+					<div class="form-group">
+						<label for="monto">Monto</label>
+						<input type="number" class="form-control" id="montoInpt" placeholder="Ingresa un monto" th:field="*{amount}"/>
+					</div>
+					<div class="form-group">
+						<label for="session">Id de sesion</label>
+						<input type="text" class="form-control" id="sessionIdInpt" th:field="*{sessionId}" readonly/>
+					</div>
+					<div class="form-group">
+						<label for="session">Orden de compra</label>
+						<input type="text" class="form-control" id="buyOrderInpt" th:field="*{buyOrder}" readonly/>
+					</div>
+					
+					<div class="col text-center">
+						<button type="submit" class="btn btn-primary">Comprar</button>
+					</div>
 				</form>
 
 			</div>
@@ -41,5 +37,7 @@
 	</div>
 
 	<div th:insert="fragments/footer :: footer"></div>
+	
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>
