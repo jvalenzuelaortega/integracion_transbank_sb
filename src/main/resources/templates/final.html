@@ -5,6 +5,7 @@
 <body>
 	<div th:insert="fragments/nav :: nav"></div>
 
+	<!-- Contenedor que muestra el detalle de la compra -->
 	<div class="container">
 		<div class="row">
 
@@ -35,6 +36,7 @@
 	</div>
 	
 	<script>
+		//Valores pasados a la vista mediante localStorage
 		document.getElementById('amount').innerHTML = window.localStorage.getItem('amount');
 		document.getElementById('authorizationCode').innerHTML = window.localStorage.getItem('authorizationCode');
 		document.getElementById('responseCode').innerHTML = window.localStorage.getItem('responseCode');

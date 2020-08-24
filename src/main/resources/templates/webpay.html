@@ -11,9 +11,9 @@
 			<div class="col-md-6 offset-md-3">
 
 				<h3 class="text-center">Confirmacion de compra</h3>
-
 				<br>
 				
+				<!-- Tabla que muestra el detalle de la compra -->
 				<table class="table">
 					<thead>
 						<tr>
@@ -29,6 +29,7 @@
 					</tbody>
 				</table>
 
+				<!-- Formulario que procesa el token y la url traida del controlador -->
 				<form action="#" class="form-inline justify-content-center" th:action="${formAction}" method="post">
 					<input type="hidden" name="token_ws" th:value="${tokenWs}">
 					<br>

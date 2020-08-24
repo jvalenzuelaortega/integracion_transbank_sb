@@ -12,7 +12,9 @@
 
 				<h4 class="text-center">Pantalla Principal</h4>
 				<br>
-
+				
+				<!-- Formulario principal que manda los valores al controlador WebpayController 
+					 para iniciar la transaccion -->
 				<form action="#" th:action="@{/webpay}" th:object="${purchase}" method="post">
 					<div class="form-group">
 						<label for="monto">Monto</label>
