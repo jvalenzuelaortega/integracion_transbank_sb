@@ -1,21 +1,55 @@
-# Ejemplo Transbank con Spring Boot
+# Aplicación de ejemplo de Webpay con Spring Boot
 
-Proyecto de ejemplo que realiza una compra usando el SDK de Transbank con Spring Boot.
+Proyecto que realiza un pago con Webpay, usando la libreria de Transbank
 
-## Tecnologias utilizadas
+## Comenzando 🚀
 
- * [Spring Boot](https://spring.io/projects/spring-boot)
- * [Bootstrap v4.5.2](https://getbootstrap.com/)
- * [SDK de Transbank](https://www.transbankdevelopers.cl/documentacion/como_empezar)
+Clonar el proyecto en un directorio e importar con Eclipse(con SpringTools instalado), Spring Tool Suite 4 o IntelliJ como proyecto Maven.
 
- ## Requisitos
+Mira **Deployment** para conocer como desplegar el proyecto.
 
-- Java 1.8
-- Maven
 
-## Ejemplo
+### Pre-requisitos 📋
 
-... En construccion
+* Java 1.8
+* Maven 3.6.3
+* Spring Tool Suite 4
 
-## Docker
-... En contruccion
+## Despliegue 📦
+
+Una vez importado, ejecutar con la herramienta de arranque de proyectos Spring Boot del IDE_
+
+Una vez desplegado, ir a la url http://localhost:8000/ y realizar una transaccion.
+
+```
+Para obtener tarjetas de prueba, visitar la pagina de Transbank Developers
+```
+
+Al finalizar la transacción, se mostrara un detalle sencillo de la compra
+
+## Ejecutando las pruebas ⚙️
+
+_Existen algunas clases de prueba dentro del proyecto, para ejecutarlas hay que ir a la clase test y hacer run (dependiendo del IDE) (EN DESARROLLO)_
+
+## Construido con 🛠️
+
+* [Spring Boot](https://spring.io/projects/spring-boot) - Framework Java
+* [Maven](https://maven.apache.org/) - Manejador de dependencias
+* [Bootstrap](https://getbootstrap.com/) - Franework CSS
+* [Transbank](https://www.transbankdevelopers.cl/) - Integrador de medios de pago
+
+## Contribuyendo 🖇️
+
+_En desarrollo ..._
+
+
+## Versionado 📌
+
+_En desarrollo ..._
+
+## Autor ✒️
+
+* **Juan Valenzuela** - [jvalenzuelaortega](https://github.com/jvalenzuelaortega) 
+
+---
+
