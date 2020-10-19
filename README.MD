@@ -17,19 +17,21 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ## Despliegue 📦
 
-Una vez importado, ejecutar con la herramienta de arranque de proyectos Spring Boot del IDE_
-
-Una vez desplegado, ir a la url http://localhost:8000/ y realizar una transaccion.
+Una vez clonado, ejecutar el siguiente comando:
 
 ```
-Para obtener tarjetas de prueba, visitar la pagina de Transbank Developers
+mvn spring-boot:run
 ```
 
+Y una vez desplegado, ir a la url http://localhost:8000/ y realizar una compra.
 Al finalizar la transacción, se mostrara un detalle sencillo de la compra
+
+_Para obtener tarjetas de prueba, visitar la pagina de  [Transbank Developers](https://www.transbankdevelopers.cl/)_
+
 
 ## Ejecutando las pruebas ⚙️
 
-_Existen algunas clases de prueba dentro del proyecto, para ejecutarlas hay que ir a la clase test y hacer run (dependiendo del IDE) (EN DESARROLLO)_
+_(EN DESARROLLO)_
 
 ## Construido con 🛠️
 
