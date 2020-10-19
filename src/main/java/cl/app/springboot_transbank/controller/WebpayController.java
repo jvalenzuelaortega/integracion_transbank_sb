@@ -43,13 +43,12 @@ public class WebpayController {
 	@PostMapping("/webpay")
 	public ModelAndView getIndex(@ModelAttribute Purchase purchase) {
 		ModelAndView mav = new ModelAndView("webpay");
-		
+
 		double amount = purchase.getAmount();
 		String session = purchase.getSessionId();
 		String buyOrder = purchase.getBuyOrder();
-		
+
 		LOGGER.info("Iniciando transaccion en el servicio de Transbank");
-		
 		//Se inicia la transaccion
 		WsInitTransactionOutput initResult = webpayNormalService.initResult(amount, session, buyOrder, 
 				webpayDataProperties.getUrlReturn(),webpayDataProperties.getUrlFinal());
@@ -65,7 +64,6 @@ public class WebpayController {
 		mav.addObject("tokenWs", tokeWs);
 		mav.addObject("amopunt", amount);
 		mav.addObject("buyOrder", buyOrder);
-
 		LOGGER.info("Retornando vista de pago");
 		
 		return mav;
@@ -80,7 +78,6 @@ public class WebpayController {
 	@PostMapping("/return")
 	public ModelAndView getReturn(@RequestParam(name = "token_ws") String tokenWs) {
 		ModelAndView mav = new ModelAndView("return");
-
 		LOGGER.info("Iniciando compra en el servicio de Transbank");
 		
 		//Se inicia el resultado del servicio
@@ -105,9 +102,7 @@ public class WebpayController {
 			mav.addObject("authorizationCode", authorizationCode);
 		}
 
-		
 		mav.addObject("tokenWs", tokenWs);
-
 		LOGGER.info("Retornando vista de retorno");
 		
 		return mav;
@@ -121,9 +116,7 @@ public class WebpayController {
 	@PostMapping("/final")
 	public ModelAndView getFinal() {
 		ModelAndView mav = new ModelAndView("final");
-		
 		LOGGER.info("Retornando vista final");
-		
 		return mav;
 	}
 
