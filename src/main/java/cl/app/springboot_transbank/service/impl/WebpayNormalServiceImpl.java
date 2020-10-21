@@ -1,7 +1,8 @@
 package cl.app.springboot_transbank.service.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cl.app.springboot_transbank.controller.WebpayController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.transbank.webpay.wswebpay.service.TransactionResultOutput;
@@ -20,8 +21,8 @@ import cl.transbank.webpay.configuration.Configuration;
 @Service
 public class WebpayNormalServiceImpl implements WebpayNormalService {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(WebpayNormalServiceImpl.class);
+	/** Constante para LOGS*/
+	private static final Logger LOG = LogManager.getLogger(WebpayNormalServiceImpl.class);
 
 	/**
 	 * Metodo que inicia la transaccion
@@ -40,11 +41,10 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		try {
 			WebpayNormal transaction = new Webpay(Configuration.forTestingWebpayPlusNormal()).getNormalTransaction();
 			initResult = transaction.initTransaction(amount, session, buyOrder, returnUrl, finalUrl);
-
-			LOGGER.info("Se ha iniciado la transaccion");
+			LOG.info("Valores retornados del servicio : " + initResult.getToken() +" | "+ initResult.getUrl());
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOGGER.info("Error al iniciar la transaccion");
+			LOG.error("Error al iniciar transaccion :" + e.getMessage());
 		}
 		return initResult;
 	}
@@ -61,10 +61,10 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		try {
 			WebpayNormal transaction = new Webpay(Configuration.forTestingWebpayPlusNormal()).getNormalTransaction();
 			result = transaction.getTransactionResult(token);
-			LOGGER.info("Se ha resuelto la transaccion");
+			LOG.info("Valores retornados del servicio");
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOGGER.info("No se ha resuelto la transaccion");
+			LOG.error("Error al retornar transaccion :" + e.getMessage());
 		}
 		return result;
 	}
@@ -80,10 +80,10 @@ public class WebpayNormalServiceImpl implements WebpayNormalService {
 		WsTransactionDetailOutput output = new WsTransactionDetailOutput();
 		try {
 			output = result.getDetailOutput().get(0);
-			LOGGER.info("Se ha extraido el detalle la transaccion");
+			LOG.info("Valores retornados del servicio : " + output.getResponseCode());
 		}catch(Exception e) {
 			e.printStackTrace();
-			LOGGER.info("No se ha extraido el detalle la transaccion");
+			LOG.error("Error al extraer el detalle de la transaccion :" + e.getMessage());
 		}
 		return output;
 	}
