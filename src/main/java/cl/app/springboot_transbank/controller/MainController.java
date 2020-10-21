@@ -8,20 +8,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cl.app.springboot_transbank.model.Purchase;
 
+/**
+ * La clase MainController.
+ */
 @Controller
 public class MainController {
 
+	/** Constante para LOGS*/
 	private static final Logger LOG = LogManager.getLogger(MainController.class);
 
+	/**
+	 * Obtiene la vista index.html.
+	 *
+	 * @return la vista que inicia la compra con transbank
+	 */
 	@GetMapping("/")
 	public ModelAndView getIndex() {
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("purchase", new Purchase());
-		LOG.debug("Debugging log in our greeting method");
-		LOG.info("Info log in our greeting method");
-		LOG.warn("Warning log in our greeting method");
-		LOG.error("Error in our greeting method");
-		LOG.fatal("Damn! Fatal error. Please fix me.");
+		LOG.info("Cargando valores iniciales para transaccion");
 		return mav;
 	}
 }

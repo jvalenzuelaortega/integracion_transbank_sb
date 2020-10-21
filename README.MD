@@ -37,7 +37,7 @@ _(EN DESARROLLO)_
 
 * [Spring Boot](https://spring.io/projects/spring-boot) - Framework Java
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [Bootstrap](https://getbootstrap.com/) - Franework CSS
+* [Bootstrap](https://getbootstrap.com/) - Framework CSS
 * [Transbank](https://www.transbankdevelopers.cl/) - Integrador de medios de pago
 
 ## Contribuyendo 🖇️
