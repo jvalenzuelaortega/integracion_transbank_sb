@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+</head>
+<body>
+
+<form action="#" th:action="${urlRedireccion}" method="post"
+      id="returnForm">
+    <input type="hidden" name="token_ws" th:value="${tokenWs}"> <br>
+</form>
+
+<!-- Guardar variable thymeleaf en localStorage para mostrar en paso final -->
+<script th:inline="javascript">
+    window.localStorage.clear();
+
+    <!-- Formato variable -> var myVariable = /*[[${myVariabel}]]*/ 'default'; -->
+    var authorizationCode = /*[[${authorizationCode}]]*/ 'default';
+    var amount = /*[[${amount}]]*/ 'default';
+    var responseCode = /*[[${responseCode}]]*/ 'default';
+
+    window.localStorage.setItem("authorizationCode", authorizationCode);
+    window.localStorage.setItem("amount", amount);
+    window.localStorage.setItem("responseCode", responseCode);
+
+    document.getElementById('returnForm').submit();
+</script>
+
+</body>
+</html>
